@@ -8,6 +8,11 @@
   set_fact:
     zuul_log_path: "{{ zuul.newrev[:2] }}/{{ zuul.newrev }}/{{ zuul.pipeline }}/{{ zuul.job }}/{{ zuul.build[:7] }}"
 
+- name: debug zuul.branch
+  debug:
+    msg: "{{ zuul.branch }}"
+  when: zuul.branch
+
 - name: Set log path for a periodic job
   when: zuul.change is not defined and zuul.newrev is not defined
   set_fact:
